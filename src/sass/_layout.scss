@@ -1,0 +1,33 @@
+/**
+* IMPORTS
+*/
+@import "mixins";
+
+
+/**
+ * CONSTANTS
+ */
+
+
+/**
+ * CONTENT
+ */
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+.ContentContainer {
+    @include border-box();
+    @include center(absolute)
+    padding: $content_indentation;
+    width: 100%;
+
+    @include breakpoint-phone {
+        height: 100%;
+        padding: $content_indentation--mobile;
+        text-align: center;
+    };
+}

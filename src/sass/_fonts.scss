@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
+.f-headline {
+    font-size: $font_size_l;
+    color: $color_system-dark;
+}
+
+.f-label {
+    font-size: $font_size_s;
+    color: $color_light-grey;
+}
+
+.f-time {
+    font-size: $font_line-height_m;
+}

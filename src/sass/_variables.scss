@@ -1,0 +1,40 @@
+/**
+ * COLORS
+ */
+$color_primary: #f9b500;
+$color_secondary: #00a2e0;
+$color_light-grey: #999999;
+$color_dark-grey: #757575;
+$color_system-light: #ffffff;
+$color_system-dark: #000000;
+$color_background_light: #E0E6ED;
+$color_background_dark: #505050;
+
+
+/**
+ * FONTS
+ */
+$font_family_regular: "source-sans-pro", sans-serif;
+
+$font_weight_regular: 400;
+$font_weight_bold: 700;
+
+$font_size_s: 14px;
+$font_size_m: 16px;
+$font_size_l: 36px;
+
+$font_line-height_s: 18px;
+$font_line-height_m:  24px;
+$font_line-height_l:  36px;
+
+$font_letter-spacing_s: 0.5px;
+$font_letter-spacing_m: 1px;
+
+
+/**
+ * GRID / BREAKPOINTS
+ */
+$breakpoint_s: 374px;
+$breakpoint_m: 600px;
+$content_indentation: 30px;
+$content_indentation--mobile: 20px;

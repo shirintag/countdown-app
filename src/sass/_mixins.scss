@@ -1,0 +1,316 @@
+/**
+* IMPORTS
+*/
+
+
+/**
+ * CONSTANTS
+ */
+
+
+/**
+* CONTENT
+*/
+@mixin appearance($style) {
+    @include border-radius(0);
+
+    appearance: $style;
+    -webkit-appearance: $style;
+    -moz-appearance: $style;
+    -ms-appearance: $style;
+    border: $style;
+    outline: $style;
+
+    &::-moz-focus-inner {
+        border: 0;
+    }
+}
+
+@mixin clearfix {
+    &::after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+}
+
+@mixin text-overflow {
+    // Requires inline-block or block for proper styling
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin placeholder {
+    &::-webkit-input-placeholder {@content}
+    &:-moz-placeholder           {@content}
+    &::-moz-placeholder          {@content}
+    &:-ms-input-placeholder      {@content}
+}
+
+@mixin border-radius($value) {
+    border-top-left-radius: $value;
+    border-top-right-radius: $value;
+    border-bottom-left-radius: $value;
+    border-bottom-right-radius: $value;
+}
+
+@mixin border-box {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+@mixin box-shadow($args) {
+    -webkit-box-shadow: $args;
+    -moz-box-shadow: $args;
+    box-shadow: $args;
+}
+
+@mixin vertical-align($position: relative) {
+    position: $position;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+@mixin center($position: relative) {
+    position: $position;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+@mixin gradient($args) {
+    $gradient: ();
+    $pos: nth($args, 1);
+    $fallback_color: nth(nth($args, 2), 1);
+    $pos_newsyntax: ();
+    // New Syntax
+    @if $pos == "top" {
+        $pos_newsyntax: "to bottom";
+    }
+    @else if $pos == "right" {
+        $pos_newsyntax: "to left";
+    }
+    @else if $pos == "bottom" {
+        $pos_newsyntax: "to top";
+    }
+    @else if $pos == "left" {
+        $pos_newsyntax: "to right";
+    }
+    @each $g in $args {
+        @if $g != "top" and $g != "right" and $g != "bottom" and $g != "left" and $g != "to top" and $g != "to right" and $g != "to bottom" and $g != "to left" {
+            $gradient: append($gradient, $g, comma);
+        }
+    }
+    background: $fallback_color;
+    background: -webkit-linear-gradient(unquote($pos), $gradient);
+    background: -moz-linear-gradient(unquote($pos), $gradient);
+    background: -ms-linear-gradient(unquote($pos), $gradient);
+    background: -o-linear-gradient(unquote($pos), $gradient);
+    background: unquote("linear-gradient(#{$pos_newsyntax}, #{$gradient})");
+}
+
+@mixin flexbox-vertical {
+    display: box;
+    box-orient: vertical;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    display: -ms-flexbox;
+    -ms-flex-direction: column;
+    display: -webkit-flex;
+    -webkit-flex-direction: column;
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flexbox-horizontal {
+    display: box;
+    box-orient: horizontal;
+    display: -webkit-box;
+    -webkit-box-orient: horizontal;
+    display: -moz-box;
+    -moz-box-orient: horizontal;
+    display: -ms-flexbox;
+    -ms-flex-direction: row;
+    display: -webkit-flex;
+    -webkit-flex-direction: row;
+    display: flex;
+    flex-direction: row;
+}
+
+@mixin flexbox-wrap($wrap) { // nowrap | wrap | wrap-reverse
+    -webkit-flex-wrap: $wrap;
+    -ms-flex-wrap: $wrap;                   //IE10
+    flex-wrap: $wrap;
+}
+
+@mixin flexbox-flex($content) {
+    display: block;
+    box-flex: $content;
+    -webkit-box-flex: $content;
+    -moz-box-flex: $content;
+    -ms-flex: $content;
+    -webkit-flex: $content;
+    flex: $content;
+    /* Hack for Windows Phone 8 */
+    p {
+        max-width: 100%;
+    }
+}
+
+@mixin flexbox-position($pack, $align) {
+    display: box;
+    box-pack: $pack;
+    box-align: $align;
+    display: -webkit-box;
+    -webkit-box-pack: $pack;
+    -webkit-box-align: $align;
+    display: -moz-box;
+    -moz-box-pack: $pack;
+    -moz-box-align: $align;
+    display: -ms-flexbox;
+    // fix for old IE10 syntax
+    @if $pack == "space-between" {
+        -ms-flex-pack: justify;
+    } @else {
+        -ms-flex-pack: $pack;
+    }
+    -ms-flex-align: $align;
+    // New Syntax
+    @if $pack == "end" or $pack == "start" {
+        $pack: unquote("flex-#{$pack}");
+    }
+    @if $align == "end" or $align == "start" {
+        $align: unquote("flex-#{$align}");
+    }
+    display: -webkit-flex;
+    -webkit-justify-content: $pack;
+    -webkit-align-items: $align;
+    display: flex;
+    justify-content: $pack;
+    align-items: $align;
+}
+
+@mixin flex-grow($grow) {
+  -webkit-flex-grow: $grow;
+     -moz-flex-grow: $grow;
+      -ms-flex-grow: $grow;
+          flex-grow: $grow;
+}
+
+@mixin transition($property, $duration, $timing) {
+    -webkit-transition: $property $duration $timing;
+       -moz-transition: $property $duration $timing;
+        -ms-transition: $property $duration $timing;
+         -o-transition: $property $duration $timing;
+            transition: $property $duration $timing;
+}
+
+@mixin transition-prefixed($property, $duration, $timing) {
+    -webkit-transition: -webkit-#{$property} $duration $timing;
+       -moz-transition: -moz-#{$property} $duration $timing;
+         -o-transition: -o-#{$property} $duration $timing;
+        -ms-transition: -ms-#{$property} $duration $timing;
+            transition: #{$property} $duration $timing;
+}
+
+@mixin transform($value) {
+    -webkit-transform: $value;
+       -moz-transform: $value;
+        -ms-transform: $value;
+            transform: $value;
+}
+
+@mixin transform-orgin($value) {
+    -webkit-transform-origin: $value;
+       -moz-transform-origin: $value;
+        -ms-transform-origin: $value;
+            transform-origin: $value;
+}
+
+@mixin rotate($degrees) {
+    -webkit-transform: rotate($degrees);
+       -moz-transform: rotate($degrees);
+        -ms-transform: rotate($degrees);
+            transform: rotate($degrees);
+}
+
+@mixin rotateY($degrees) {
+    -webkit-transform: rotateY($degrees);
+       -moz-transform: rotateY($degrees);
+        -ms-transform: rotateY($degrees);
+            transform: rotateY($degrees);
+}
+
+@mixin rotateZ($degrees) {
+    -webkit-transform: rotateZ($degrees);
+       -moz-transform: rotateZ($degrees);
+        -ms-transform: rotateZ($degrees);
+            transform: rotateZ($degrees);
+}
+
+@mixin perspective($distance) {
+    -webkit-perspective: $distance;
+       -moz-perspective: $distance;
+        -ms-perspective: $distance;
+            perspective: $distance;
+
+    -webkit-perspective-origin: 50% 10%;
+       -moz-perspective-origin: 50% 10%;
+        -ms-perspective-origin: 50% 10%;
+            perspective-origin: 50% 10%;
+}
+
+@mixin backface-visibility-hidden {
+    -webkit-backface-visibility: hidden;
+       -moz-backface-visibility: hidden;
+            backface-visibility: hidden;
+}
+
+@mixin preserve-3d {
+    -webkit-transform-style: preserve-3d;
+       -moz-transform-style: preserve-3d;
+        -ms-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+}
+
+@mixin breakpoint-phone {
+   @media all and (max-width: $breakpoint_s) {
+       @content;
+   }
+}
+
+@mixin breakpoint-tablet {
+   @media all and (max-width: $breakpoint_m) {
+       @content;
+   }
+}
+
+@mixin display-standard {
+    @media
+    (-webkit-max-device-pixel-ratio: 1),
+    (max-resolution: 2dppx), // dppx is not supported in IE 11 and lower, so dpi is still needed
+    (max-resolution: 192dpi) {
+        @content;
+    }
+}
+
+@mixin display-retina {
+    @media
+    (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 2dppx), // dppx is not supported in IE 11 and lower, so dpi is still needed
+    (min-resolution: 192dpi) {
+        @content;
+    }
+}

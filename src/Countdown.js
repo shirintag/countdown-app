@@ -51,7 +51,7 @@ class Countdown extends Component {
         return (
             <div className="ContentContainer">
                 {!this.state.live &&
-                    <div>
+                    <div className="CountdownContainer">
                         <div className="f-headline">Next online live concert in</div>
                         <div className="Countdown">
                             <div className="Countdown-box">

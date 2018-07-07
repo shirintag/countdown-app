@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Countdown from './Countdown';
 import './App.css';
+import './sass/bundle.scss';
 
 class App extends Component {
     constructor() {

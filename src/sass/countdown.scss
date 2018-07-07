@@ -1,0 +1,35 @@
+.CountdownContainer {
+    @include flexbox-vertical();
+    
+    @media screen and (orientation:portrait) {
+        @include flexbox-position(space-around, center);
+        height: 80%;
+    }
+
+    .Countdown {
+        @include flexbox-horizontal();
+        @include flexbox-position(space-between, start);
+
+        max-width: 500px;
+        padding: 20px;
+        margin: 0 auto;
+        color: $color_primary;
+
+        &-box {
+            @include flexbox-vertical();
+            @include flexbox-position(space-between, center);
+
+            width: 30px;
+            height: 80px;
+            text-align: center;
+            margin: 14px;
+
+            &-value {
+                width: 30px;
+                padding: 5px;
+                background: $color_background_dark;
+            }
+        }
+
+    }
+}
