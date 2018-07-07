@@ -19,7 +19,7 @@ html, body {
 }
 
 
-.ContentContainer {
+.ContentContainers {
     @include border-box();
     @include center(absolute)
     padding: $content_indentation;
@@ -30,4 +30,14 @@ html, body {
         padding: $content_indentation--mobile;
         text-align: center;
     };
+
+    @include breakpoint-tablet {
+        height: 80%;
+        padding: $content_indentation--mobile;
+        text-align: center;
+    }
+}
+
+.App {
+    @include center(absolute)
 }

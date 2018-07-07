@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Countdown from './Countdown';
-import './App.css';
 import './sass/bundle.scss';
 
 class App extends Component {
@@ -49,9 +48,9 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                { this.state.loadingData && <div>Searching for concerts</div> }
+                { this.state.loadingData && <div className="f-info">Searching for concerts</div> }
                 { this.state.concertDateTime && <Countdown concertDateTime={this.state.concertDateTime}/> }
-                { this.state.noData && <p className="ErrorMessage f-errorMessage">No available concerts.</p> }
+                { this.state.noData && <p className="ErrorMessage f-info">No available concerts.</p> }
             </div>
         );
     }

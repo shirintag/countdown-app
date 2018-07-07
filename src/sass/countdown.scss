@@ -1,6 +1,6 @@
 .CountdownContainer {
     @include flexbox-vertical();
-    
+
     @media screen and (orientation:portrait) {
         @include flexbox-position(space-around, center);
         height: 80%;

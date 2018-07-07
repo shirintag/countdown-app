@@ -285,16 +285,30 @@
             transform-style: preserve-3d;
 }
 
-@mixin breakpoint-phone {
-   @media all and (max-width: $breakpoint_s) {
-       @content;
-   }
+@mixin breakpoint-desktop {
+    @media all and (max-width: $breakpoint_xl) {
+        @content;
+    }
 }
-
+@mixin breakpoint-laptop {
+    @media all and (max-width: $breakpoint_l) {
+        @content;
+    }
+}
+@mixin breakpoint-map-section {
+    @media all and (max-width: $breakpoint_map-section) {
+        @content;
+    }
+}
 @mixin breakpoint-tablet {
-   @media all and (max-width: $breakpoint_m) {
-       @content;
-   }
+    @media all and (max-width: $breakpoint_m) {
+        @content;
+    }
+}
+@mixin breakpoint-phone {
+    @media all and (max-width: $breakpoint_s) {
+        @content;
+    }
 }
 
 @mixin display-standard {

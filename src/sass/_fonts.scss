@@ -3,6 +3,8 @@
 .f-headline {
     font-size: $font_size_l;
     color: $color_system-dark;
+    margin: auto;
+    text-align: center;
 }
 
 .f-label {
@@ -12,4 +14,11 @@
 
 .f-time {
     font-size: $font_line-height_m;
+}
+
+.f-info {
+    font-size: $font_size_m;
+    color: $color_system-dark;
+    margin: auto;
+    text-align: center;
 }
