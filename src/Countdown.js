@@ -6,11 +6,15 @@ class Countdown extends Component {
         const countdown = this.calculateCountdownTime(props.concertDateTime);
         this.state = {
             concertDateTime: props.concertDateTime,
+            totalSeconds: countdown.totalSeconds,
             days: countdown.days,
             hours: countdown.hours,
             minutes: countdown.minutes,
-            seconds: countdown.seconds
+            seconds: countdown.seconds,
+            live: countdown.totalSeconds <= 0
         };
+
+        this.updateCountdownTime = this.updateCountdownTime.bind(this);
     }
 
     calculateCountdownTime(concertDateTime) {
@@ -22,14 +26,21 @@ class Countdown extends Component {
         remainingSeconds = remainingSeconds % (60*60);
         const minutes = Math.floor(remainingSeconds / 60);
         const seconds = Math.floor(remainingSeconds % 60);
-        return {days, hours, minutes, seconds};
+        return {totalSeconds, days, hours, minutes, seconds};
+    }
+
+    updateCountdownTime() {
+        const countdown = this.calculateCountdownTime(this.props.concertDateTime);
+        if (countdown.totalSeconds <= 0) {
+            this.setState({live: true});
+            clearInterval(this.interval);
+        } else {
+            this.setState(countdown);
+        }
     }
 
     componentDidMount() {
-        this.interval = setInterval(() => this.setState(
-            this.calculateCountdownTime(this.props.concertDateTime)),
-            1000
-        );
+        this.interval = setInterval(this.updateCountdownTime, 1000);
     }
 
     componentWillUnmount() {
@@ -38,13 +49,31 @@ class Countdown extends Component {
 
     render() {
         return (
-            <div>
-                <div className="Countdown">
-                    <span>{this.state.days}</span>
-                    <span>{this.state.hours}</span>
-                    <span>{this.state.minutes}</span>
-                    <span>{this.state.seconds}</span>
-                </div>
+            <div className="ContentContainer">
+                {!this.state.live &&
+                    <div>
+                        <div className="f-headline">Next online live concert in</div>
+                        <div className="Countdown">
+                            <div className="Countdown-box">
+                                <span className="Countdown-box-value f-time">{this.state.days}</span>
+                                <span className="Countdown-box-label f-label">Days</span>
+                            </div>
+                            <div className="Countdown-box">
+                                <span className="Countdown-box-value f-time">{this.state.hours}</span>
+                                <span className="Countdown-box-label f-label">hrs.</span>
+                            </div>
+                            <div className="Countdown-box">
+                                <span className="Countdown-box-value f-time">{this.state.minutes}</span>
+                                <span className="Countdown-box-label f-label">min.</span>
+                            </div>
+                            <div className="Countdown-box">
+                                <span className="Countdown-box-value f-time">{this.state.seconds}</span>
+                                <span className="Countdown-box-label f-label">sec.</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+                {this.state.live && <div className="f-headline">Now Live</div>}
             </div>
         );
     }
