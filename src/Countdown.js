@@ -11,7 +11,6 @@ class Countdown extends Component {
             minutes: countdown.minutes,
             seconds: countdown.seconds
         };
-
     }
 
     calculateCountdownTime(concertDateTime) {
@@ -26,6 +25,16 @@ class Countdown extends Component {
         return {days, hours, minutes, seconds};
     }
 
+    componentDidMount() {
+        this.interval = setInterval(() => this.setState(
+            this.calculateCountdownTime(this.props.concertDateTime)),
+            1000
+        );
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
 
     render() {
         return (
