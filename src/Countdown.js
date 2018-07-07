@@ -17,8 +17,8 @@ class Countdown extends Component {
         this.updateCountdownTime = this.updateCountdownTime.bind(this);
     }
 
-    calculateCountdownTime(concertDateTime) {
-        const now = new Date();
+    calculateCountdownTime(concertDateTime, now) {
+        now = now || new Date();
         const totalSeconds = (concertDateTime - now) / 1000;
         const days = Math.floor(totalSeconds / (60*60*24));
         let remainingSeconds = totalSeconds % (60*60*24);
