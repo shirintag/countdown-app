@@ -22,22 +22,19 @@ html, body {
 .ContentContainers {
     @include border-box();
     @include center(absolute)
-    padding: $content_indentation;
-    width: 100%;
 
-    @include breakpoint-phone {
-        height: 100%;
-        padding: $content_indentation--mobile;
-        text-align: center;
-    };
+    width: 100%;
+    max-width: 800px;
+    padding: $content_indentation;
 
     @include breakpoint-tablet {
-        height: 80%;
-        padding: $content_indentation--mobile;
+        max-width: 450px;
+        padding: $content_indentation--tablet;
         text-align: center;
     }
-}
 
-.App {
-    @include center(absolute)
+    @include breakpoint-phone {
+        max-width: 300px;
+    }
+
 }

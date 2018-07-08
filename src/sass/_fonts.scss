@@ -1,24 +1,27 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
-
 .f-headline {
     font-size: $font_size_l;
-    color: $color_system-dark;
-    margin: auto;
+    color: $color_dark-grey;
     text-align: center;
+    letter-spacing: $font_letter-spacing_l;
+    font-weight: bold;
 }
 
 .f-label {
-    font-size: $font_size_s;
+    font-size: $font_size_m;
     color: $color_light-grey;
+    letter-spacing: $font_letter-spacing_s;
+    text-align: center;
 }
 
 .f-time {
-    font-size: $font_line-height_m;
+    font-size: $font_size_xxl;
+    color: $color_primary;
+    line-height: $font_line-height_xl;
 }
 
 .f-info {
+    margin: auto;
     font-size: $font_size_m;
     color: $color_system-dark;
-    margin: auto;
     text-align: center;
 }

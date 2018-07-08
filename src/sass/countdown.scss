@@ -1,35 +1,59 @@
-.CountdownContainer {
-    @include flexbox-vertical();
+.Countdown {
+    @include border-box();
+    @include flexbox-horizontal();
+    @include flexbox-position(space-around, center);
 
-    @media screen and (orientation:portrait) {
-        @include flexbox-position(space-around, center);
-        height: 80%;
-    }
+    margin: 20px auto;
 
-    .Countdown {
-        @include flexbox-horizontal();
-        @include flexbox-position(space-between, start);
+    &-box {
+        @include flexbox-vertical();
+        text-align: center;
 
-        max-width: 500px;
-        padding: 20px;
-        margin: 0 auto;
-        color: $color_primary;
+        @include breakpoint-phone {
+            margin: 5px;
+        }
 
-        &-box {
-            @include flexbox-vertical();
-            @include flexbox-position(space-between, center);
+        &-value {
+            width: 100px;
+            padding: 10px;
+            margin: 20px 0;
+            background: $color_background_dark;
 
-            width: 30px;
-            height: 80px;
-            text-align: center;
-            margin: 14px;
+            @include breakpoint-tablet {
+                width: 45px;
+                font-size: $font_size_m;
+                line-height: $font_line-height_l;
+            }
 
-            &-value {
-                width: 30px;
-                padding: 5px;
-                background: $color_background_dark;
+            @include breakpoint-phone {
+                padding: 0 5px;
+                font-size: $font_size_s;
+                line-height: $font_line-height_l;
             }
         }
 
+        &-label {
+            @include breakpoint-tablet {
+                font-size: $font_size_s;
+            }
+
+            @include breakpoint-phone {
+                font-size: $font_size_xs;
+            }
+        }
+    }
+}
+
+.CountdownTitle {
+    margin: 0 auto;
+
+    @include breakpoint-tablet {
+        font-size: $font_size_l;
+        letter-spacing: $font_letter-spacing_s;
+    }
+
+    @include breakpoint-phone {
+        margin-bottom: 50px;
+        font-size: $font_size_s;
     }
 }

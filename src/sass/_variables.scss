@@ -1,34 +1,40 @@
 /**
  * COLORS
  */
-$color_primary: #f9b500;
+$color_primary: #f5a800;
 $color_secondary: #00a2e0;
-$color_light-grey: #999999;
-$color_dark-grey: #757575;
 $color_system-light: #ffffff;
 $color_system-dark: #000000;
-$color_background_light: #E0E6ED;
+$color_light-grey: #999999;
+$color_dark-grey: #222222;
+$color_background_light: #f5f4f2;
 $color_background_dark: #505050;
 
 
 /**
  * FONTS
  */
-$font_family_regular: "source-sans-pro", sans-serif;
+$font_family_regular: sans-serif;
 
 $font_weight_regular: 400;
 $font_weight_bold: 700;
 
-$font_size_s: 14px;
-$font_size_m: 16px;
-$font_size_l: 36px;
+$font_size_xs: 16px;
+$font_size_s: 24px;
+$font_size_m: 36px;
+$font_size_l: 46px;
+$font_size_xl: 60px;
+$font_size_xxl: 80px;
 
 $font_line-height_s: 18px;
-$font_line-height_m:  24px;
-$font_line-height_l:  36px;
+$font_line-height_s: 24px;
+$font_line-height_m: 36px;
+$font_line-height_l: 60px;
+$font_line-height_xl: 140px;
 
-$font_letter-spacing_s: 0.5px;
-$font_letter-spacing_m: 1px;
+$font_letter-spacing_s: 2px;
+$font_letter-spacing_m: 3px;
+$font_letter-spacing_l: 6px;
 
 
 /**
@@ -38,5 +44,5 @@ $breakpoint_xl: 1440px;
 $breakpoint_l: 1024px;
 $breakpoint_m: 720px;
 $breakpoint_s: 480px;
-$content_indentation: 30px;
-$content_indentation--mobile: 20px;
+$content_indentation: 80px;
+$content_indentation--tablet: 20px;

@@ -48,34 +48,32 @@ class Countdown extends Component {
     }
 
     render() {
-        return (
-            <div className="ContentContainer">
-                {!this.state.live &&
-                    <div className="CountdownContainer">
-                        <div className="f-headline">Next online live concert in</div>
-                        <div className="Countdown">
-                            <div className="Countdown-box">
-                                <span className="Countdown-box-value f-time">{this.state.days}</span>
-                                <span className="Countdown-box-label f-label">Days</span>
-                            </div>
-                            <div className="Countdown-box">
-                                <span className="Countdown-box-value f-time">{this.state.hours}</span>
-                                <span className="Countdown-box-label f-label">hrs.</span>
-                            </div>
-                            <div className="Countdown-box">
-                                <span className="Countdown-box-value f-time">{this.state.minutes}</span>
-                                <span className="Countdown-box-label f-label">min.</span>
-                            </div>
-                            <div className="Countdown-box">
-                                <span className="Countdown-box-value f-time">{this.state.seconds}</span>
-                                <span className="Countdown-box-label f-label">sec.</span>
-                            </div>
-                        </div>
+        let content;
+        if (!this.state.live) {
+            content = (
+                <div className="Countdown">
+                    <div className="Countdown-box">
+                        <span className="Countdown-box-value f-time">{this.state.days}</span>
+                        <span className="Countdown-box-label f-label">Days</span>
                     </div>
-                }
-                {this.state.live && <div className="f-headline">Now Live</div>}
-            </div>
-        );
+                    <div className="Countdown-box">
+                        <span className="Countdown-box-value f-time">{this.state.hours}</span>
+                        <span className="Countdown-box-label f-label">hrs.</span>
+                    </div>
+                    <div className="Countdown-box">
+                        <span className="Countdown-box-value f-time">{this.state.minutes}</span>
+                        <span className="Countdown-box-label f-label">min.</span>
+                    </div>
+                    <div className="Countdown-box">
+                        <span className="Countdown-box-value f-time">{this.state.seconds}</span>
+                        <span className="Countdown-box-label f-label">sec.</span>
+                    </div>
+                </div>
+            )
+        } else {
+            content = <div className="f-headline">Now Live</div>
+        }
+        return content;
     }
 }
 
