@@ -20,10 +20,10 @@ class Countdown extends Component {
     calculateCountdownTime(concertDateTime, now) {
         now = now || new Date();
         const totalSeconds = (concertDateTime - now) / 1000;
-        const days = Math.floor(totalSeconds / (60*60*24));
-        let remainingSeconds = totalSeconds % (60*60*24);
-        const hours = Math.floor(remainingSeconds / (60*60));
-        remainingSeconds = remainingSeconds % (60*60);
+        const days = Math.floor(totalSeconds / 86400);
+        let remainingSeconds = totalSeconds % 86400;
+        const hours = Math.floor(remainingSeconds / 3600);
+        remainingSeconds = remainingSeconds % 3600;
         const minutes = Math.floor(remainingSeconds / 60);
         const seconds = Math.floor(remainingSeconds % 60);
         return {totalSeconds, days, hours, minutes, seconds};
