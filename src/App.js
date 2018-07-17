@@ -48,7 +48,6 @@ class App extends Component {
     render() {
         return (
             <div className="ContentContainers">
-                { this.state.concertDateTime && <div className="CountdownTitle f-headline">Next online live concert in</div>}
                 { this.state.concertDateTime && <Countdown concertDateTime={this.state.concertDateTime}/>}
                 { this.state.loadingData && <div className="f-info">Searching for concerts</div> }
                 { this.state.noData && <p className="ErrorMessage f-info">No available concerts.</p> }

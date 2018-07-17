@@ -50,7 +50,8 @@ class Countdown extends Component {
     render() {
         let content;
         if (!this.state.live) {
-            content = (
+            const countdownTitle = <div className="CountdownTitle f-headline">Next online live concert in</div>
+            const countdown = (
                 <div className="Countdown">
                     <div className="Countdown-box">
                         <span className="Countdown-box-value f-time">{this.state.days}</span>
@@ -70,6 +71,7 @@ class Countdown extends Component {
                     </div>
                 </div>
             )
+            content = [ countdownTitle, countdown ]
         } else {
             content = <div className="f-headline">Now Live</div>
         }
