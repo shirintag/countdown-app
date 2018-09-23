@@ -8,36 +8,23 @@ class App extends Component {
         this.state = {
             concertDateTime: null,
             loadingData: true,
-            noData: false
         }
 
         this._fetchData = this._fetchData.bind(this);
     }
 
     _fetchData() {
-        fetch('./data/concertData.json').then(response => {
-            if (response.status >= 200 && response.status < 300) {
-                return response;
-            } else {
-                var error = new Error(response.statusText)
-                error.response = response;
-                throw error;
-            }
-        }).then(
-            response => response.json()
-        ).then(json => {
-            console.log(json);
+        fetch('./data/concertData.json').then(response => response.json()).then(json => {
             this.setState({
                 concertDateTime: new Date(json.concertTimestamp),
                 loadingData: false
-            })
+            });
         }).catch(error => {
             console.log(error.response ? error.response : error);
             this.setState({
                 loadingData: false,
                 noData: true
-            })
-
+            });
         });
     }
 
@@ -45,12 +32,25 @@ class App extends Component {
         this._fetchData();
     }
 
+
     render() {
+        let content = null;
+
+        if (this.state.concertDateTime) {
+            content = (
+                <div>
+                    <div className="CountdownTitle f-headline"> Next online live concert in </div>
+                    <Countdown concertDateTime={this.state.concertDateTime}/>
+                </div>
+            );
+        } else {
+            content = <p className="ErrorMessage f-info">No available concerts.</p>;
+        }
+
         return (
             <div className="ContentContainers">
-                { this.state.concertDateTime && <Countdown concertDateTime={this.state.concertDateTime}/>}
-                { this.state.loadingData && <div className="f-info">Searching for concerts</div> }
-                { this.state.noData && <p className="ErrorMessage f-info">No available concerts.</p> }
+                {this.state.loadingData && <div className="f-info"> Searching for concerts</div>}
+                {content}
             </div>
         );
     }

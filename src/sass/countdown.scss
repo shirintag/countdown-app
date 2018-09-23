@@ -14,13 +14,13 @@
         }
 
         &-value {
-            width: 100px;
+            min-width: 100px;
             padding: 10px;
             margin: 20px 0;
             background: $color_background_dark;
 
             @include breakpoint-tablet {
-                width: 45px;
+                min-width: 45px;
                 font-size: $font_size_m;
                 line-height: $font_line-height_l;
             }

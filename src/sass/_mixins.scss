@@ -1,63 +1,3 @@
-/**
-* IMPORTS
-*/
-
-
-/**
- * CONSTANTS
- */
-
-
-/**
-* CONTENT
-*/
-@mixin appearance($style) {
-    @include border-radius(0);
-
-    appearance: $style;
-    -webkit-appearance: $style;
-    -moz-appearance: $style;
-    -ms-appearance: $style;
-    border: $style;
-    outline: $style;
-
-    &::-moz-focus-inner {
-        border: 0;
-    }
-}
-
-@mixin clearfix {
-    &::after {
-        content: "";
-        display: block;
-        width: 0;
-        height: 0;
-        clear: both;
-        visibility: hidden;
-    }
-}
-
-@mixin text-overflow {
-    // Requires inline-block or block for proper styling
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-@mixin placeholder {
-    &::-webkit-input-placeholder {@content}
-    &:-moz-placeholder           {@content}
-    &::-moz-placeholder          {@content}
-    &:-ms-input-placeholder      {@content}
-}
-
-@mixin border-radius($value) {
-    border-top-left-radius: $value;
-    border-top-right-radius: $value;
-    border-bottom-left-radius: $value;
-    border-bottom-right-radius: $value;
-}
-
 @mixin border-box {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -88,36 +28,6 @@
     transform: translateX(-50%) translateY(-50%);
 }
 
-@mixin gradient($args) {
-    $gradient: ();
-    $pos: nth($args, 1);
-    $fallback_color: nth(nth($args, 2), 1);
-    $pos_newsyntax: ();
-    // New Syntax
-    @if $pos == "top" {
-        $pos_newsyntax: "to bottom";
-    }
-    @else if $pos == "right" {
-        $pos_newsyntax: "to left";
-    }
-    @else if $pos == "bottom" {
-        $pos_newsyntax: "to top";
-    }
-    @else if $pos == "left" {
-        $pos_newsyntax: "to right";
-    }
-    @each $g in $args {
-        @if $g != "top" and $g != "right" and $g != "bottom" and $g != "left" and $g != "to top" and $g != "to right" and $g != "to bottom" and $g != "to left" {
-            $gradient: append($gradient, $g, comma);
-        }
-    }
-    background: $fallback_color;
-    background: -webkit-linear-gradient(unquote($pos), $gradient);
-    background: -moz-linear-gradient(unquote($pos), $gradient);
-    background: -ms-linear-gradient(unquote($pos), $gradient);
-    background: -o-linear-gradient(unquote($pos), $gradient);
-    background: unquote("linear-gradient(#{$pos_newsyntax}, #{$gradient})");
-}
 
 @mixin flexbox-vertical {
     display: box;
@@ -163,10 +73,6 @@
     -ms-flex: $content;
     -webkit-flex: $content;
     flex: $content;
-    /* Hack for Windows Phone 8 */
-    p {
-        max-width: 100%;
-    }
 }
 
 @mixin flexbox-position($pack, $align) {
@@ -180,20 +86,8 @@
     -moz-box-pack: $pack;
     -moz-box-align: $align;
     display: -ms-flexbox;
-    // fix for old IE10 syntax
-    @if $pack == "space-between" {
-        -ms-flex-pack: justify;
-    } @else {
-        -ms-flex-pack: $pack;
-    }
+    -ms-flex-pack: $pack;
     -ms-flex-align: $align;
-    // New Syntax
-    @if $pack == "end" or $pack == "start" {
-        $pack: unquote("flex-#{$pack}");
-    }
-    @if $align == "end" or $align == "start" {
-        $align: unquote("flex-#{$align}");
-    }
     display: -webkit-flex;
     -webkit-justify-content: $pack;
     -webkit-align-items: $align;
@@ -307,24 +201,6 @@
 }
 @mixin breakpoint-phone {
     @media all and (max-width: $breakpoint_s) {
-        @content;
-    }
-}
-
-@mixin display-standard {
-    @media
-    (-webkit-max-device-pixel-ratio: 1),
-    (max-resolution: 2dppx), // dppx is not supported in IE 11 and lower, so dpi is still needed
-    (max-resolution: 192dpi) {
-        @content;
-    }
-}
-
-@mixin display-retina {
-    @media
-    (-webkit-min-device-pixel-ratio: 2),
-    (min-resolution: 2dppx), // dppx is not supported in IE 11 and lower, so dpi is still needed
-    (min-resolution: 192dpi) {
         @content;
     }
 }
